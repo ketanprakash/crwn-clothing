@@ -5,6 +5,12 @@
   justify-content: space-between;
   margin-bottom: 25px;
 
+  a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .logo-container {
     height: 100%;
     width: 70px;
@@ -17,9 +23,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
+   
     .option {
       padding: 10px 15px;
+      cursor: pointer;
     }
   }
 }
