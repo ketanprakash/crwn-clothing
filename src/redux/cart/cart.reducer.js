@@ -1,3 +1,5 @@
+import CartActionTypes from "./cart.types";
+
 const INITIAL_STATE = {
   hidden: true,
   cartItems: []
@@ -5,12 +7,12 @@ const INITIAL_STATE = {
 
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'TOGGLE_CART_HIDDEN':
+    case CartActionTypes.TOGGLE_CART_HIDDEN:
       return {
         ...state,
         hidden: !state.hidden
       }
-    case 'ADD_ITEM':
+    case CartActionTypes.ADD_ITEM:
       let exists = 0;
       let newCartItems = state.cartItems.map(item => {
         if (item.id === action.payload.id){
@@ -23,6 +25,21 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: newCartItems
+      }
+    case CartActionTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
+      }
+    case CartActionTypes.DECREASE_ITEM_QUANTITY:
+      return {
+        ...state,
+        cartItems: state.cartItems.map(cartItem => {
+          if (cartItem.id === action.payload.id){
+            return {...cartItem, qty: cartItem.qty - 1};
+          }
+          return cartItem;
+        })
       }
     default: 
       return state

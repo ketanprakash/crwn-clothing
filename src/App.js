@@ -10,7 +10,9 @@ import {ShopPage} from './pages/shop/shop.component'
 import { SignInAndSignUpPage } from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 
 import Header from './components/header/header.component'
-
+import { selectCurrentUser } from './redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+import CheckoutPage from './pages/checkout/checkout.component';
 const SignInPageAuth = ({currentUser}) => {
   return currentUser ? <Navigate to = '/' replace = {true}/> : <SignInAndSignUpPage/>
 }
@@ -45,14 +47,15 @@ class App extends React.Component{
           <Route path='/' element={<HomePage/>}/>
           <Route path='/shop' element={<ShopPage/>}/>
           <Route path='/signin' element={<SignInPageAuth currentUser={this.props.currentUser}/>}/>
+          <Route path='/checkout' element={<CheckoutPage/>}/>
         </Routes>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = dispatch => ({
