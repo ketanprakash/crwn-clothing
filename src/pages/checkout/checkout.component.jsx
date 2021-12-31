@@ -29,11 +29,11 @@ const CheckoutPage = ({cartTotal, cartItems}) => (
       </div>
       {cartItems.map(cartItem => <CheckoutItem cartItem={cartItem}/>)}
       <div className="total">{`TOTAL: $${cartTotal}`}</div>
+      <StripeCheckoutButton price={cartTotal}/>
     </>
     : 
     <div className="empty-message">THE CART IS EMPTY</div>
     }
-    <StripeCheckoutButton price={cartTotal}/>
   </div>
 )
 
