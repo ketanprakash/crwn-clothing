@@ -27,6 +27,13 @@
     .option {
       padding: 10px 15px;
       cursor: pointer;
+      border: 1px solid white;
+      transition: color 150ms, border 150ms;
+
+      &:hover{
+        color: #9c0505;
+        border: 1px solid #9c0505; 
+      }
     }
   }
 }
